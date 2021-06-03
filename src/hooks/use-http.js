@@ -7,13 +7,12 @@ const useHttp = (requestConfig, applyData) => {
   const sendRequest = async (taskText) => {
     setIsLoading(true);
     setError(null);
-    // "https://react-https-344f0-default-rtdb.firebaseio.com/tasks.json"
     try {
       const response = await fetch(
         requestConfig.url, {
-            method: requestConfig.method,
-            header: requestConfig.header,
-            body: JSON.stringify(requestConfig.body)
+            method: requestConfig.method ? requestConfig.method: 'GET',
+            header: requestConfig.header ? requestConfig.header : {},
+            body: requestConfig.body ? JSON.stringify(requestConfig.body) : null
         }
       );
 
